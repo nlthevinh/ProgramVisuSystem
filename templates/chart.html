@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport"
+         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+
+   <meta charset="utf-8">   <title>Chart.js </title>
+   <!-- import plugin script -->
+   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>-->
+
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+   <script src="https://code.highcharts.com/modules/exporting.js"></script>
+   <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+   <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+   <script>
+
+         Highcharts.chart('container', {
+           chart: {
+             type: 'area'
+           },
+           title: {
+             text: 'Utilisation du CPU, DISK, NET et RAM'
+           },
+           subtitle: {
+             text: 'Sources: Les gens de devant'
+           },
+           xAxis: {
+             allowDecimals: false,
+             labels: {
+               formatter: function () {
+                 return this.value; // clean, unformatted number for year
+               }
+             }
+           },
+           yAxis: {
+             title: {
+               text: 'Utilisation'
+             },
+             labels: {
+               formatter: function () {
+                 return this.value + '%';
+               }
+             }
+           },
+           tooltip: {
+             pointFormat: '{series.name} est utilisé à <b>{point.y:,.0f} %</b><br/> à {point.x}'
+           },
+           plotOptions: {
+             area: {
+               pointStart: 0,
+               marker: {
+                 enabled: false,
+                 symbol: 'circle',
+                 radius: 2,
+                 states: {
+                   hover: {
+                     enabled: true
+                   }
+                 }
+               }
+             }
+           },
+           series: [ {
+             name: 'DISK',
+             data: [{% for valeur in set2 %}
+                  {{valeur}},
+              {% endfor %}]
+
+           },
+
+
+
+           {
+             name: 'RAM',
+             data: [{% for valeur, ip in set3 %}
+                  {{valeur}},
+              {% endfor %}]
+
+           },
+
+           {
+             name: 'CPU',
+             data: [{% for valeur in set1 %}
+                  {{valeur}},
+              {% endfor %}]
+
+           }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           /*,
+
+
+
+
+           {
+             name: 'NET',
+             data: /*[{% for valeur in set4 %}
+                  {{valeur}},
+              {% endfor %}]
+
+             [
+               5, 25, 100, 15.0, 25.0, 20, 53.0, 66.0, 78.5, 12.00,
+               52.0, 70.0, 63.0, 28.50, 46.21, 42.30, 41.03, 5, 25, 100, 15.0, 25.0, 20, 53.0, 66.0, 78.5, 12.00,
+               52.0, 70.0, 63.0, 28.50, 46.21, 42.30, 41.03, 5, 25, 100, 15.0, 25.0, 20, 53.0, 66.0, 78.5, 12.00,
+               52.0, 70.0, 63.0, 28.50, 46.21, 42.30, 41.03, 5, 25, 100, 15.0, 25.0, 20, 53.0, 66.0, 78.5, 12.00,
+               52.0, 70.0, 63.0, 28.50, 46.21, 42.30, 41.03
+             ]
+           }*/]
+         });
+
+      setTimeout(function(){
+         window.location.reload(true)
+       }, 30000) // Répète la fonction toutes les 10 sec
+
+   </script>
+
+
+</body>
+</html>
+
